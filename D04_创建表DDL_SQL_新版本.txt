@@ -1,0 +1,314 @@
+-- Database Name:HTDB
+-- user: jdheating
+-- password:jdheating 
+-- 表的创建
+-- 3 采暖费模块表设计
+-- 小区信息表
+create table HT_Neighbourhood
+(
+   HOODNO int(10) primary key auto_increment,
+   HOODName varchar(100),
+   Address varchar(200)
+
+);
+
+-- 户型表
+create table HT_HOUSETYPE
+(
+     TYPENO int(10) primary key auto_increment,
+     TYPENAME varchar(50) not null
+);
+-- 居民表
+create table HT_HOME
+(
+    HOMENO int(10) primary key  auto_increment,
+    HeatingCode varchar(20),
+    HOUSETYPENO int(10) references HT_HOUSETYPE(TYPENO),
+    HOODNO int(10) references HT_Neighbourhood(HoodNo),
+    HomeName varchar(20),
+    BuildingCODE varchar(20),
+    DepartmentCode varchar(20),
+    FloorCode varchar(20),
+    HouseCode varchar(20),
+    HomeArea DECIMAL(10,3),
+   Direction varchar(20),
+   Tel varchar(20),
+   Mobile varchar(20),
+   Mail varchar(100),
+   QQ varchar(20),
+   HeatingStatus varchar(20) default '正常',
+   HeatingArea DECIMAL(10,3)
+);
+-- 公建表
+create table HT_publichouse
+(
+  HOUSENO int(10) primary key auto_increment,
+  HoodNo int(10) references HT_Neighbourhood(HoodNo),
+  HeatingECODE varchar(20),
+  HouseName varchar(50),
+  HOUSECODE varchar(50),
+  Building varchar(20),
+  HouseArea DECIMAL(10,3),
+  Address varchar(200),
+  POSTCODE varchar(10),
+  ContactName varchar(50),
+  Tel varchar(20),
+  Mobile varchar(20),
+  Mail varchar(100),
+  QQ varchar(20),
+  HeatingStatus varchar(10),
+  DepartmentCode varchar(50),
+  FloorCode VARCHAR(50),
+  HeatingArea DECIMAL(10,3)
+);
+-- 供热年度费率表
+create table HT_HeadtingPrice
+(
+    HeatingYear varchar(4) primary key,
+    HomePrice DECIMAL(10,2) default 0,
+    PublicHousePrice DECIMAL(10,3) default 0,
+    HeatingMemo varchar(1000),
+    heatingdays int(10),
+    PriceFile longblob,
+    PriceFileName varchar(200),
+    PriceFileContentType varchar(200)
+);
+-- 付款方式表
+create table HT_PaymentType
+(
+    TYPENO int(10) primary key auto_increment,
+    TYPENAME varchar(50)
+
+);
+-- 居民供热记录表
+create table HT_homeFee
+(
+    FeeNo int(10) primary key auto_increment,
+    HomeNo int(10) references HT_HOME(HomeNo),
+    HeatingYear varchar(10) not null references HT_HeadtingPrice(HeatingYear),
+    HeatArea DECIMAL(10,3),
+    AgreeFee DECIMAL(10,3),
+    ActualFee DECIMAL(10,3),
+    DebtFee DECIMAL(10,3),
+    FeeDesc varchar(2000),
+    FeeStatus varchar(10) default 'Y',
+    heatingdays int(10)
+    
+);
+-- 公建供热记录表
+create table HT_PublicHouseFee
+(
+    FeeNo int(10) primary key auto_increment,
+    HouseNo int(10) references  HT_publichouse(HouseNo),
+    HeatingYear varchar(10) not null references HT_HeadtingPrice(HeatingYear),
+    HeatArea DECIMAL(10,3),
+    AgreeFee DECIMAL(10,3),
+    ActualFee DECIMAL(10,3),
+    DebtFee DECIMAL(10,3),
+    FeeDesc varchar(2000),
+    FeeStatus varchar(10) default 'Y',
+    heatingdays int(10)
+
+);
+--   住宅供热缴费记录表
+create table HT_HomeFeePayRecord
+(
+    RecordNo int(10) primary key auto_increment,
+    FeeNo int(10) references HT_homeFee(FeeNo),
+    PaymentTypeNo int(10) references HT_PaymentType(TypeNo),
+    PayAmount decimal(12,2) default 0,
+    PayDate date,
+    PayPerson varchar(50),
+    CheckCode varchar(50),
+    InvoiceCode varchar(50),
+    PayDesc varchar(2000),
+    RecordStatus varchar(10) default 'N'
+);
+
+-- 公建供热缴费记录表
+create table HT_PublicHouseFeePayRecord
+(
+    RecordNo int(10) primary key auto_increment,
+    FeeNo int(10) references HT_publichousefee(FeeNo),
+    PaymentTypeNo int(10) references HT_PaymentType(TypeNo),
+    PayAmount decimal(12,2) default 0,
+    PayDate date,
+    PayPerson varchar(50),
+    CheckCode varchar(50),
+    InvoiceCode varchar(50),
+    PayDesc varchar(2000),
+    RecordStatus varchar(10) default 'N'
+);
+-- 住宅供热退费记录表
+create table HT_HomeFeeReturnRecord
+(
+    RecordNo int(10) primary key auto_increment,
+    FeeNo int(10) references HT_homeFee(FeeNo),
+    HomeNo int(10) references HT_HOME(HomeNo),
+    PaymentTypeNo int(10) references HT_PaymentType(TypeNo),
+    Amount decimal(12,2) default 0,
+    returnDate date,
+    Person varchar(50),
+    CheckCode varchar(50),
+    InvoiceCode varchar(50),
+    RecordDesc varchar(2000),
+    RecordStatus varchar(10) default 'N'
+
+);
+-- 公建供热退费记录表
+create table HT_PublicHouseFeeReturnRecord
+(
+    RecordNo int(10) primary key auto_increment,
+    FeeNo int(10) references HT_publichousefee(FeeNo),
+    PaymentTypeNo int(10) references HT_PaymentType(TypeNo),
+    Amount decimal(12,2) default 0,
+    returnDate date,
+    Person varchar(50),
+    CheckCode varchar(50),
+    InvoiceCode varchar(50),
+    RecordDesc varchar(2000),
+    RecordStatus varchar(10) default 'N'
+
+);
+-- 住宅供热报停表
+create table HT_HomeStopRecord
+(
+      RecordNo int(10) primary key auto_increment,
+      FeeNo int(10) references HT_homeFee(FeeNo),
+      StopArea decimal(12,3) default 0,
+      StopDate date,
+      StopReason varchar(1000),
+      StopPerson varchar(50),
+      StopDesc varchar(1000),
+      StopStatus varchar(10) default 'N'
+);
+-- 公建供热报停表
+create table HT_PublicHouseStopRecord
+(
+     RecordNo int(10) primary key auto_increment,
+     FeeNo int(10) references HT_publichousefee(FeeNo),
+     StopArea decimal(12,3) default 0,
+     StopDate date,
+     StopReason varchar(1000),
+     StopPerson varchar(50),
+     StopDesc varchar(1000),
+     StopStatus varchar(10) default 'N'
+);
+
+
+-- ==============  4. 客户服务模块表设计================================
+-- 投诉类型表
+create table HT_complainType
+(
+     TYPENO int(10) primary key auto_increment,
+     TYPENAME varchar(50) not null
+);
+-- 住宅投诉记录表
+create table HT_Homecomplain
+(
+    ComplainNo int(10) primary key auto_increment,
+    HomeNo int(10) references HT_HOME(HomeNo),
+    TYPENO int(10) references HT_complainType(TypeNO),
+    ComplainTitle varchar(500),
+    ComplainContent varchar(2000),
+    RequestContent varchar(1000),
+    ComplainDate date,
+    ContactPerson varchar(100),
+    Tel varchar(50),
+    Mobile Varchar(50),
+    Mail varchar(200),
+    QQ varchar(50),
+    ServiceStartDate date,
+    ServiceEndDate date,
+    ServiceContent varchar(1000),
+    ServicePerson varchar(50),
+    FeedBackDate date,
+    HomeComment varchar(1000),
+    AssuranceDate date,
+    AssuranceFee decimal(12,2) default 0,
+    AssurancePayDate date,
+    ComplainStatus varchar(10) default '未处理'
+);
+
+-- 公建投诉记录表
+create table HT_PublicHousecomplain
+(
+    ComplainNo int(10) primary key auto_increment,
+    HouseNo int(10) references  HT_publichouse(HouseNo),
+    TYPENO int(10) references HT_complainType(TypeNO),
+    ComplainTitle varchar(500),
+    ComplainContent varchar(2000),
+    RequestContent varchar(1000),
+    ComplainDate date,
+    ContactPerson varchar(100),
+    Tel varchar(50),
+    Mobile Varchar(50),
+    Mail varchar(200),
+    QQ varchar(50),
+    ServiceStartDate date,
+    ServiceEndDate date,
+    ServiceContent varchar(1000),
+    ServicePerson varchar(50),
+    FeedBackDate date,
+    HouseComment varchar(1000),
+    AssuranceDate date,
+    AssuranceFee decimal(12,2) default 0,
+    AssurancePayDate date,
+    ComplainStatus varchar(10) default '未处理'
+);
+
+
+
+
+-- 7. 系统配置模块
+-- 7.1 操作员表
+create table HT_User
+(
+    UUSERID varchar(20) primary key,
+    UPASSWORD varchar(20) not null,
+    UName varchar(50)
+);
+-- 7.2系统功能表
+create table HT_Function
+(
+   FUNNO int(10) primary key,
+   FUNNAME varchar(50),
+   FUNURL varchar(200),
+   LevelNo int(2)
+);
+
+-- 7.3 系统功能权限表（操作员与功能的关联表）
+create table HT_FunctionUser
+(
+   FunNo int(10) references HT_SystemFunction(FUNNO),
+   UUserID varchar(20) references HT_SystemUser(UUSERID),
+   primary key(FUNNO,UUserID)
+);
+
+-- 7.4 系统管理员辅助信息
+-- 与管理员表HT_SYSTEMUser构成一对一关系
+create table HT_UserInfo
+(
+    UUSERID varchar(20) primary key references HT_SystemUser(UUSERID),
+    Sex varchar(2),
+    AGE int(2),
+    PHOTO longblob,
+    PHOTOFileName varchar(100),
+    PhotoContentType varchar(100),
+    Tel varchar(20),
+    Mobile varchar(11)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
