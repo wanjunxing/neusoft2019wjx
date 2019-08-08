@@ -8,3 +8,55 @@
 组员|吴澍淼|
 组员|张晓龙|
 组员|万俊星|
+
+### 项目模块
+
+1. 系统登录处理
+2. 文件管理模块
+3. 通知管理模块
+4. 员工信息管理模块
+5. 供热收费管理模块
+6. 客户投诉模块
+7. 系统操作员管理模块
+8. 系统功能配置模块
+
+
+### 模块关系整理（初步）
+
+#### 1.采暖费模块 对应 5
+表数量：14|主键|表名|关联的表
+--|:--:|--:|--:
+小区信息表           |HOODNO   |HT_Neighbourhood		
+户型表               |TYPENO   |HT_HOUSETYPE
+居民表               |HOMENO   |HT_HOME|户型表(TYPENO) 1:1,小区信息表(HoodNo) 1:1
+公建表		            |HOUSENO  |HT_publichouse	|小区信息表(HoodNo)1:1
+供热年度费率表	       |HeatingYear	|HT_HeadtingPrice|
+付款方式表	           |TYPENO 	|HT_PaymentType|
+居民供热记录表	        |FeeNo		|HT_homeFee			|居民表(HomeNo)1:1, 供热年度费率表(HeatingYear)1:1
+住宅供热缴费记录表     |RecordNo	 |HT_HomeFeePayRecord		|居民供热记录表(FeeNo)1:1,付款方式表(TypeNo)1:n
+住宅供热退费记录表     |RecordNo	|HT_HomeFeeReturnRecord		|居民表(HomeNo)1:1,付款方式表(TypeNo)1:n
+住宅供热报停表	        |RecordNo		|HT_HomeStopRecord		|居民供热记录表(FeeNo)1:1
+公建供热记录表	        |FeeNo		|HT_PublicHouseFee			|公建表(HouseNo)1:1, 供热年度费率表(HeatingYear)1:1
+公建供热缴费记录表      |RecordNo		|HT_PublicHouseFeePayRecord		|公建供热记录表(FeeNo)1:1,付款方式表(TypeNo)1:n	
+公建供热退费记录	     |RecordNo	|HT_PublicHouseFeeReturnRecord	|公建表(HouseNo)1:1,付款方式表(TypeNo)1:n
+公建供热报停表	        |RecordNo	|HT_PublicHouseStopRecord	|公建供热记录表(FeeNo)1:1
+
+
+#### 2. 客户服务模块 对应 6
+
+表数量：3	                           |主键		|表名				|关联的表
+--|:--:|--:|--:
+|投诉类型表	           |TYPENO		|HT_complainType
+|住宅投诉记录表	           |ComplainNo		|HT_Homecomplain			|居民表(HomeNo)1:1，投诉类型表(TypeNO)
+|公建投诉记录表	           |ComplainNo		|HT_PublicHousecomplain		|公建表(HouseNo)1:1,  投诉类型表(TypeNO)
+
+
+#### 3. 系统配置模块 对应 1? 4?  7?  8
+
+表数量：4	                           |主键		|表名				|关联的表
+--|:--:|--:|--:
+|操作员表	           |UUSERID		|HT_SystemUser
+|系统功能表	           |FUNNO	 	|HT_Function
+|系统功能权限表（操作员与功能的关联表）	        |FUNNO,UUserID	|HT_FunctionUse
+|系统管理员辅助信息表       |UUSERID		|HT_UserInfo			|操作员表(UUSERID) 1:1    
+
