@@ -14,8 +14,8 @@ import lombok.Data;
 public class HomeFeeModel {
 	
 	private int feeno = 0;
-	private int homeno = 0;
-	private String heatingyear = null;
+	private HomeModel homeModel = null;
+	private HeatingPriceModel heatingPriceModel = null;
 	private float heatarea = 0;
 	private float actualfee = 0;
 	private float debtfee = 0;

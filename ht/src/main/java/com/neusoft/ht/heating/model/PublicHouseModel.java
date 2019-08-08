@@ -15,7 +15,7 @@ import lombok.Data;
 public class PublicHouseModel {
   
 	  private int houseno = 0;
-	  private int hoodno = 0;
+	  private NeighbourHoodModel neighbourHoodModel = null;
 	  private String heatingecode = null;
 	  private String housename = null;
 	  private String building = null;

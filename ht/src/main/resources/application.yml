@@ -35,19 +35,16 @@ spring:
   
 #mybatis配置   
 mybatis:
-   mapper-locations: classpath:mapping/*Mapper.xml
-   type-aliases-package: com.example.entity
- 
+  mapper-locations:
+  #- classpath*:/mappers/**/*Mapper.xml
+  type-aliases-package:
+    #com.neusoft.ht
+
+  
 #showSql
 logging:
   level:
-    com:
-      example:
-        mapper : debug
-
-
-
-
+    com.neusoft.ht.heating.mapper: debug
 
 
 

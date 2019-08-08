@@ -16,8 +16,8 @@ public class HomeModel {
   
    private int homeno = 0;
    private String heatingcode = null;
-   private int housetypeno = 0;
-   private int hoodno = 0;
+   private HouseTypeModel houseTypeModel = null;
+   private NeighbourHoodModel neighbourHoodModel = null;
    private String homename = null;
    private String buildingcode = null;
    private String departmentcode = null;
