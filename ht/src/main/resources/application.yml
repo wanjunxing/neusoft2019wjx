@@ -44,7 +44,7 @@ mybatis:
 #showSql
 logging:
   level:
-    com.neusoft.ht.heating.mapper: debug
+    com.neusoft.ht.*.mapper: debug
 
 
 
