@@ -13,15 +13,15 @@
 
 + 域名：com.neusoft
 + 项目：ht
-+ 项目模块
-1. 登录模块：login
-2. 文件模块:file
-3. 通知模块:notice
-4. 员工信息管理模块:security
-5. 供热收费管理模块:heating
-6. 投诉模块:complain
-7. 系统操作员管理模块:security
-8. 系统功能配置模块:security
++ 项目模块(初步)
+  1. 登录模块：login
+  2. 文件模块:file
+  3. 通知模块:notice
+  4. 员工信息管理模块:security
+  5. 供热收费管理模块:heating
+  6. 投诉模块:complain
+  7. 系统操作员管理模块:security
+  8. 系统功能配置模块:security
 
 
 ### 模块关系整理（初步）
