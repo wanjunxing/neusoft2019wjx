@@ -1,7 +1,4 @@
 
-server:
-  port: 8080
-
 spring:
       #数据库配置
    datasource:
@@ -10,13 +7,7 @@ spring:
     username: negosan
     password: #Nogosan
  
-
-      # 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
-      # 测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
-      # 生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
-   profiles:
-     active: dev
-
+      
       # 指定静态资源路径
    resources:
         #指定静态资源路径，默认为classpath:[/META-INF/resources/,/resources/, /static/, /public/]以及context:/
@@ -53,6 +44,9 @@ logging:
     com:
       example:
         mapper : debug
+
+
+
 
 
 
