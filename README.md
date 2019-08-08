@@ -49,7 +49,7 @@
 #### 2. 客户服务模块 对应 6
 
 表数量：3	                           |主键		|表名				|关联的表
---|:---:|---:|--:
+:-|:--|:--|:--
 |投诉类型表	           |TYPENO		|HT_complainType
 |住宅投诉记录表	           |ComplainNo		|HT_Homecomplain			|居民表(HomeNo)1:1，投诉类型表(TypeNO)
 |公建投诉记录表	           |ComplainNo		|HT_PublicHousecomplain		|公建表(HouseNo)1:1,  投诉类型表(TypeNO)
@@ -58,7 +58,7 @@
 #### 3. 系统配置模块 对应 1? 4?  7?  8
 
 表数量：4	                           |主键		|表名				|关联的表
---|:--:|--:|--:
+:-|:--|:--|:--
 |操作员表	           |UUSERID		|HT_SystemUser
 |系统功能表	           |FUNNO	 	|HT_Function
 |系统功能权限表（操作员与功能的关联表）	        |FUNNO,UUserID	|HT_FunctionUse
