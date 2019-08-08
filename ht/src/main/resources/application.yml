@@ -1,0 +1,60 @@
+
+server:
+  port: 8080
+
+spring:
+      #数据库配置
+   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://negosan0104.mysql.rds.aliyuncs.com:3306/htdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: negosan
+    password: #Nogosan
+ 
+
+      # 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+      # 测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
+      # 生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
+   profiles:
+     active: dev
+
+      # 指定静态资源路径
+   resources:
+        #指定静态资源路径，默认为classpath:[/META-INF/resources/,/resources/, /static/, /public/]以及context:/
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/}
+
+      #热部署--静态资源立即生效
+   thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    check-template-location: true
+      #热部署生效
+   devtools:
+    restart:
+      enabled: true
+
+   jackson:
+      #指定日期格式，比如yyyy-MM-dd HH:mm:ss
+     date-format: yyyy-MM-dd HH:mm:ss
+      #指定日期格式化时区
+     time-zone: GMT+8
+  
+  
+#mybatis配置   
+mybatis:
+   mapper-locations: classpath:mapping/*Mapper.xml
+   type-aliases-package: com.example.entity
+ 
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
+
+
+
+
+
