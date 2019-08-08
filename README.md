@@ -8,6 +8,7 @@
 组员|吴澍淼|
 组员|张晓龙|
 组员|万俊星|
+****************************
 
 ### 项目参数
 
@@ -23,12 +24,12 @@
   7. 系统操作员管理模块:security
   8. 系统功能配置模块:security
 
-
+******************************
 ### 模块关系整理（初步）
 
 #### 1.采暖费模块 对应 5
 表数量：14|主键|表名|关联的表
---|:--:|--:|--:
+:-|:--|:--|:--
 小区信息表           |HOODNO   |HT_Neighbourhood		
 户型表               |TYPENO   |HT_HOUSETYPE
 居民表               |HOMENO   |HT_HOME|户型表(TYPENO) 1:1,小区信息表(HoodNo) 1:1
@@ -48,7 +49,7 @@
 #### 2. 客户服务模块 对应 6
 
 表数量：3	                           |主键		|表名				|关联的表
---|:--:|--:|--:
+--|:---:|---:|--:
 |投诉类型表	           |TYPENO		|HT_complainType
 |住宅投诉记录表	           |ComplainNo		|HT_Homecomplain			|居民表(HomeNo)1:1，投诉类型表(TypeNO)
 |公建投诉记录表	           |ComplainNo		|HT_PublicHousecomplain		|公建表(HouseNo)1:1,  投诉类型表(TypeNO)
