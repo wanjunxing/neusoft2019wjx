@@ -2,7 +2,7 @@ package com.neusoft.ht.login.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.neusoft.ht.login.value.AdminUserValue;
+import com.neusoft.ht.login.model.AdminUserValue;
 
 @Mapper
 public interface IUserDao {

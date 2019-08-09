@@ -1,4 +1,4 @@
-package com.neusoft.ht.login.value;
+package com.neusoft.ht.login.model;
 
 import lombok.Data;
 

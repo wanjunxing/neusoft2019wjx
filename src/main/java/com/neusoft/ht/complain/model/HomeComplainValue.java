@@ -1,6 +1,5 @@
-package com.neusoft.ht.complain.value;
+package com.neusoft.ht.complain.model;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -46,4 +45,6 @@ public class HomeComplainValue {
 	private Date assuranceDate = null;
 	//保险金额
 	private double assuranceFee = 0.00;
+	//保险理赔时间
+	private Date assurancePayDate = null;
 }

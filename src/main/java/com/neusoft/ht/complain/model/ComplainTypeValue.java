@@ -1,4 +1,4 @@
-package com.neusoft.ht.complain.value;
+package com.neusoft.ht.complain.model;
 
 import lombok.Data;
 
