@@ -2,7 +2,7 @@ package com.neusoft.ht.fee.mapper;
 
 import java.util.List;
 
-import com.neusoft.ht.heating.model.HomeFeeModel;
+import com.neusoft.ht.fee.model.HomeFeeModel;
 
 public interface IHomeFeeModelMapper {
 	//C

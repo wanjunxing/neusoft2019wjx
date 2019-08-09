@@ -2,7 +2,7 @@ package com.neusoft.ht.fee.mapper;
 
 import java.util.List;
 
-import com.neusoft.ht.heating.model.PaymentTypeModel;
+import com.neusoft.ht.fee.model.PaymentTypeModel;
 
 public interface IPaymentTypeMapper {
 	//C
