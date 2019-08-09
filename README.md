@@ -1,13 +1,13 @@
 # 东软2019培训项目团队-供热缴费管理系统
 ##  团队成员
 
-团队|姓名|任务分配
---|:--:|--:
-组长|黄宇德|
+团队|姓名|任务分配(暂定，快认领)
+--|:--:|:-
+组长|黄宇德|供热收费管理模块(基础信息，年份供热价格管理，供热居民管理，住宅供热记录管理，住宅缴费记录管理，住宅供热退费管理，住宅停供记录管理)
 组员|罗妙忠|
 组员|吴澍淼|
 组员|张晓龙|
-组员|万俊星|
+组员|万俊星|投诉模块、系统操作员管理模块、系统功能配置模块
 ****************************
 
 ### 项目参数
@@ -19,7 +19,7 @@
 2. 文件模块:file
 3. 通知模块:notice
 4. 员工信息管理模块:security
-5. 供热收费管理模块:heating
+5. 供热收费管理模块:fee
 6. 投诉模块:complain
 7. 系统操作员管理模块:security
 8. 系统功能配置模块:security
@@ -37,12 +37,12 @@
 供热年度费率表	       |HeatingYear	|HT_HeadtingPrice|
 付款方式表	           |TYPENO 	|HT_PaymentType|
 居民供热记录表	        |FeeNo		|HT_homeFee			|居民表(HomeNo)1:1, 供热年度费率表(HeatingYear)1:1
-住宅供热缴费记录表     |RecordNo	 |HT_HomeFeePayRecord		|居民供热记录表(FeeNo)1:1,付款方式表(TypeNo)1:n
-住宅供热退费记录表     |RecordNo	|HT_HomeFeeReturnRecord		|居民表(HomeNo)1:1,付款方式表(TypeNo)1:n
+住宅供热缴费记录表     |RecordNo	 |HT_HomeFeePayRecord		|居民供热记录表(FeeNo)1:1,付款方式表(TypeNo)1:1
+住宅供热退费记录表     |RecordNo	|HT_HomeFeeReturnRecord		|居民表(HomeNo)1:1,付款方式表(TypeNo)1:1
 住宅供热报停表	        |RecordNo		|HT_HomeStopRecord		|居民供热记录表(FeeNo)1:1
 公建供热记录表	        |FeeNo		|HT_PublicHouseFee			|公建表(HouseNo)1:1, 供热年度费率表(HeatingYear)1:1
-公建供热缴费记录表      |RecordNo		|HT_PublicHouseFeePayRecord		|公建供热记录表(FeeNo)1:1,付款方式表(TypeNo)1:n	
-公建供热退费记录	     |RecordNo	|HT_PublicHouseFeeReturnRecord	|公建表(HouseNo)1:1,付款方式表(TypeNo)1:n
+公建供热缴费记录表      |RecordNo		|HT_PublicHouseFeePayRecord		|公建供热记录表(FeeNo)1:1,付款方式表(TypeNo)1:1
+公建供热退费记录	     |RecordNo	|HT_PublicHouseFeeReturnRecord	|公建表(HouseNo)1:1,付款方式表(TypeNo)1:1
 公建供热报停表	        |RecordNo	|HT_PublicHouseStopRecord	|公建供热记录表(FeeNo)1:1
 
 
